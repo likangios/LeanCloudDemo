@@ -16,18 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AVUser *user = [AVUser user];
-    user.username = @"123456";
-    user.password = @"aaaa";
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        NSLog(@"error");
-    }];
+//    AVUser *user = [AVUser user];
+//    user.username = @"123456";
+//    user.password = @"aaaa";
+//    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        NSLog(@"error");
+//    }];
 
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSString *uuid =  [UIDevice currentDevice].identifierForVendor.UUIDString;
     NSError *error;
-    AVUser *user = [AVUser logInWithUsername:@"123456" password:@"aaaa" error:&error];
+    AVUser *user = [AVUser logInWithUsername:@"13675158507" password:@"123456" error:&error];
     [user refresh];
     NSLog(@"user");
 
