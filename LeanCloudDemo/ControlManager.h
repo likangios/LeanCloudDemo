@@ -11,4 +11,5 @@
 @interface ControlManager : NSObject
 + (instancetype)sharInstance;
 - (BOOL)isPush;
+- (BOOL)vipIsValidWith:(NSString *)username;
 @end

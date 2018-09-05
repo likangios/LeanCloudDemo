@@ -8,9 +8,12 @@
 
 #import "ViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "ControlManager.h"
+
 @interface ViewController ()
 
 @end
+
 
 @implementation ViewController
 
@@ -25,12 +28,12 @@
 
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSString *uuid =  [UIDevice currentDevice].identifierForVendor.UUIDString;
-    NSError *error;
-    AVUser *user = [AVUser logInWithUsername:@"13675158507" password:@"123456" error:&error];
-    [user refresh];
-    NSLog(@"user");
-
+    if([[ControlManager sharInstance] vipIsValidWith:@"13675158507"]){
+        NSLog(@"会员有效");
+    }
+    else{
+        NSLog(@"会员过期");
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

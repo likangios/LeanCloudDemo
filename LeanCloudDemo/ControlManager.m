@@ -9,6 +9,10 @@
 #import "ControlManager.h"
 #import <AVOSCloud/AVOSCloud.h>
 static ControlManager *shareInstance;
+
+static CGFloat Second_Day = 24 * 60 * 60;
+
+
 @implementation ControlManager
 + (instancetype) sharInstance {
     static dispatch_once_t onceToken;
@@ -31,5 +35,19 @@ static ControlManager *shareInstance;
         }
     }
     return  NO;
+}
+- (BOOL)vipIsValidWith:(NSString *)username{
+    NSError *error;
+    AVUser *user = [AVUser logInWithUsername:username password:@"123456" error:&error];
+    [user refresh];
+    NSNumber *diff = [user objectForKey:@"diff"];
+    NSDate *creatData = user.createdAt;
+    NSDate *now = [NSDate date];
+    if(now.timeIntervalSince1970 > (creatData.timeIntervalSince1970 + diff.intValue * Second_Day )){
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 @end
